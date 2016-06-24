@@ -18,6 +18,8 @@ def read_data(filename):
     data = data.lower()
     words = data.split()
     return words
+# cannot upload the unlabled data, since it is too large.
+# please go to "http://riejohnson.com/cnn_download.html" to download the CONTEXT v3.00, which contains the unlabled data. 
 words = read_data("elec-25k-unlab00.txt.tok")
 
 # print(words)
