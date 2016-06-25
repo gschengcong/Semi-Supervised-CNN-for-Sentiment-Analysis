@@ -128,7 +128,7 @@ train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 sess.run(tf.initialize_all_variables())
-for i in range(200000):
+for i in range(20000):
   start_time = time.time()
   batch, labels = generate_batch(50, "combined.txt")
   if i%100 == 0:
@@ -143,16 +143,6 @@ for i in range(200000):
     dev_accuracy = accuracy.eval(feed_dict={x:dev_data, y_: dev_lables})
     duration = time.time() - start_time - duration
     print('iteration %d: dev data accuracy = %.2f (%.3f sec)' % (i, dev_accuracy , duration))
-#    del dev_data
-#    del dev_lables
-
-#    test_data, test_lables = genrate_data_matrix("test_processed_data.txt")
-#    test_accuracy = accuracy.eval(feed_dict={x:test_data, y_: test_lables})
-#    print("iteration %d, test accuracy %g"%(i, test_accuracy))
-
-dev_data, dev_lables = genrate_data_matrix("dev_processed_data.txt")
-dev_accuracy = accuracy.eval(feed_dict={x:dev_data, y_: dev_lables})
-print("step %d, dev accuracy %g"%(i, dev_accuracy))
 
 test_data, test_lables = genrate_data_matrix("test_processed_data.txt")
 test_accuracy = accuracy.eval(feed_dict={x:test_data, y_: test_lables})
