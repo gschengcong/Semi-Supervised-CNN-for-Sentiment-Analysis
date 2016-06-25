@@ -107,11 +107,7 @@ for i in range(20000):
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
         points, lables = generate_batch(19206)
         print("iteration ", i, accuracy.eval(feed_dict={x: points, y_: lables}))
-    if(i % 100 == 0):
-        correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
-        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
         print("dev data accuracy: ", accuracy.eval(feed_dict={x: dev_data, y_: dev_lables}))
-        print("test data accuray: ", accuracy.eval(feed_dict={x: test_data, y_: test_lables}))
 
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
